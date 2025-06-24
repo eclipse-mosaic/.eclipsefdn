@@ -13,6 +13,14 @@ orgs.newOrg('automotive.mosaic', 'eclipse-mosaic') {
     },
   },
   _repositories+:: [
+    orgs.newRepo('.github') {
+      secret_scanning: "disabled",
+      secret_scanning_push_protection: "disabled",
+      web_commit_signoff_required: false,
+      workflows+: {
+        default_workflow_permissions: "write",
+      },
+    },
     orgs.newRepo('mosaic') {
       allow_rebase_merge: false,
       allow_update_branch: false,
@@ -57,10 +65,5 @@ orgs.newOrg('automotive.mosaic', 'eclipse-mosaic') {
         default_workflow_permissions: "write",
       },
     },
-  ],
-} + {
-  # snippet added due to 'https://github.com/EclipseFdn/otterdog-configs/blob/main/blueprints/add-dot-github-repo.yml'
-  _repositories+:: [
-    orgs.newRepo('.github')
   ],
 }
